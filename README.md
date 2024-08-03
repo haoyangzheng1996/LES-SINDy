@@ -1,7 +1,8 @@
 # Laplace-Enhanced SINDy (LES-SINDy)
 
+This is the code repository for Laplace-Enhanced SINDy.
 
-### 1. Advection-Diffusion Equation
+# 1. Advection-Diffusion Equation
 
 The Advection-Diffusion equation is a partial differential equation (PDE) that describes the flow of a substance or quantity within a physical system, taking into account both advection (transport due to the flow) and diffusion (spreading due to random motion). The general form of the equation is:
 
@@ -16,7 +17,7 @@ where:
 
 The equation is widely used in fields such as fluid dynamics, environmental engineering, and chemical engineering to model phenomena like pollutant dispersion in the atmosphere, heat conduction, and solute transport in porous media.
 
-### 2. Burgers' Equation
+# 2. Burgers' Equation
 
 Burgers' equation is a fundamental PDE that combines elements of nonlinear advection and diffusion. It is used to model various physical processes, such as gas dynamics and traffic flow. The equation is given by:
 
@@ -30,7 +31,7 @@ where:
 
 In its inviscid form (when $\nu=0$), Burgers' equation reduces to a simple hyperbolic PDE, which can develop shock waves. With viscosity, it resembles the Navier-Stokes equation in one dimension, making it useful for studying turbulence and shock wave formation.
 
-### 3. Kuramoto–Sivashinsky Equation
+# 3. Kuramoto–Sivashinsky Equation
 
 The Kuramoto–Sivashinsky equation is a nonlinear PDE used to describe the diffusive instabilities in a laminar flame front, but it also applies to a variety of other physical contexts involving pattern formation and spatiotemporal chaos. The equation is:
 
