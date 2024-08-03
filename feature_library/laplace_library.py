@@ -511,7 +511,7 @@ class LaplaceLibrary(BaseFeatureLibrary):
 
             library_idx = 0
             # Constant term
-            if self.include_bias: 
+            if self.include_bias:
                 constants_final = np.zeros(self.K)
                 for k in range(self.K):
                     constants_final[k] = np.sum(self.fullweights0[k])

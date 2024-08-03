@@ -104,7 +104,7 @@ if __name__ == "__main__":
     parser.add_argument('--noise', type=float, default=0.05)
     parser.add_argument('--burn_in', type=int, default=100, help="")
     parser.add_argument('--if', default=False, type=lambda x: bool(distutils.util.strtobool(x)), help='')
-
+ 
     args = parser.parse_args()
     print(args)
 
