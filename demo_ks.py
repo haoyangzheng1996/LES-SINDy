@@ -19,7 +19,7 @@ def main(flags):
     np.random.seed(100)
 
     # Load and plot the data
-    data = loadmat("data/kuramoto_sivishinky.mat")
+    data = loadmat("data/kuramoto_sivishinky_data.mat")
     time = np.ravel(data["tt"])
     x = np.ravel(data["x"])
     u = data["uu"]
