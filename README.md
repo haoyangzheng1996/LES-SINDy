@@ -1,10 +1,14 @@
 # Laplace-Enhanced SINDy (LES-SINDy)
 
-This is the code repository for Laplace-Enhanced SINDy.
+This is the code repository for Laplace-Enhanced Sparse Identification of Nonlinear Dynamical Systems (LES-SINDy).
 
-# 1. Advection-Diffusion Equation
+More details will be updated later...
 
-The Advection-Diffusion equation is a partial differential equation (PDE) that describes the flow of a substance or quantity within a physical system, taking into account both advection (transport due to the flow) and diffusion (spreading due to random motion). The general form of the equation is:
+![pde_plot](https://github.com/user-attachments/assets/ed64f36a-47de-40f5-a22b-bb3bc60805a5)
+
+# 1. Convection-Diffusion Equation
+
+The Convection-Diffusion equation is a partial differential equation (PDE) that describes the flow of a substance or quantity within a physical system, taking into account both advection (transport due to the flow) and diffusion (spreading due to random motion). The general form of the equation is:
 
 $\frac{\partial C}{\partial t} + u \frac{\partial C}{\partial x} - D \frac{\partial^2 C}{\partial x^2} = 0$,
 
@@ -15,7 +19,6 @@ where:
 - $x$ is the spatial coordinate.
 - $t$ is time.
 
-The equation is widely used in fields such as fluid dynamics, environmental engineering, and chemical engineering to model phenomena like pollutant dispersion in the atmosphere, heat conduction, and solute transport in porous media.
 
 # 2. Burgers' Equation
 
@@ -29,8 +32,6 @@ where:
 - $x$ is the spatial coordinate.
 - $t$ is time.
 
-In its inviscid form (when $\nu=0$), Burgers' equation reduces to a simple hyperbolic PDE, which can develop shock waves. With viscosity, it resembles the Navier-Stokes equation in one dimension, making it useful for studying turbulence and shock wave formation.
-
 # 3. Kuramoto–Sivashinsky Equation
 
 The Kuramoto–Sivashinsky equation is a nonlinear PDE used to describe the diffusive instabilities in a laminar flame front, but it also applies to a variety of other physical contexts involving pattern formation and spatiotemporal chaos. The equation is:
@@ -41,5 +42,3 @@ where:
 - $u(x,t)$ is a scalar field representing the system's state.
 - $x$ is the spatial coordinate.
 - $t$ is time.
-
-This equation exhibits chaotic behavior and complex spatiotemporal patterns, making it a key model in the study of turbulence, chaotic dynamics, and pattern formation in dissipative systems.
