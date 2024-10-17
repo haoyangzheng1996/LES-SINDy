@@ -1,8 +1,19 @@
+
+![les_sindy_framework](https://github.com/user-attachments/assets/de34c63b-3b47-4fe7-8b8c-2586e10e1001)
+
 # Laplace-Enhanced SINDy (LES-SINDy)
 
 This is the code repository for Laplace-Enhanced Sparse Identification of Nonlinear Dynamical Systems (LES-SINDy).
 
+# Introduction
+Sparse Identification of Nonlinear Dynamical Systems (SINDy) is a powerful tool for the data-driven discovery of governing equations. However, it encounters challenges when modeling complex dynamical systems involving high-order derivatives or discontinuities, particularly in the presence of noise. These limitations restrict its applicability across various fields in applied mathematics and physics. To mitigate these, we propose Laplace-Enhanced SparSe Identification of Nonlinear Dynamical Systems (LES-SINDy). By transforming time-series measurements from the time domain to the Laplace domain using the Laplace transform and integration by parts, LES-SINDy enables more accurate approximations of derivatives and discontinuous terms. It also effectively handles unbounded growth functions and accumulated numerical errors in the Laplace domain, thereby overcoming challenges in the identification process. The model evaluation process selects the most accurate and parsimonious dynamical systems from multiple candidates. Experimental results across diverse ordinary and partial differential equations show that LES-SINDy achieves superior robustness, accuracy, and parsimony compared to existing methods.
+
+
 More details will be updated later...
+
+# Prerequisites
+
+Please refer to "environment.yml"
 
 ![pde_plot](https://github.com/user-attachments/assets/ed64f36a-47de-40f5-a22b-bb3bc60805a5)
 
