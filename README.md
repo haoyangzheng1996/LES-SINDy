@@ -30,6 +30,10 @@ where:
 - $x$ is the spatial coordinate.
 - $t$ is time.
 
+Please run:
+```python
+$ python demo_advection.py
+```
 
 # 2. Burgers' Equation
 
@@ -42,6 +46,11 @@ where:
 - $\nu=0.5$ is the kinematic viscosity.
 - $x$ is the spatial coordinate.
 - $t$ is time.
+- 
+Please run:
+```python
+$ python demo_burgers.py
+```
 
 # 3. Kuramoto–Sivashinsky Equation
 
@@ -53,3 +62,12 @@ where:
 - $u(x,t)$ is a scalar field representing the system's state.
 - $x$ is the spatial coordinate.
 - $t$ is time.
+- 
+Please run:
+```python
+$ python demo_ks.py
+```
+
+## References:
+This repo is built upon [PySINDy](https://github.com/dynamicslab/pysindy)
+
