@@ -11,8 +11,91 @@ from feature_library.laplace_library import LaplaceLibrary
 
 
 def main(flags):
-    # We will update this once the work becomes available on arXiv.
-    pass
+
+    warnings.filterwarnings("ignore", category=UserWarning)
+    warnings.filterwarnings("ignore", category=FutureWarning)
+
+    # Seed the random number generators for reproducibility
+    np.random.seed(flags.seed)
+
+    data = loadmat("data/burgers_data.mat")
+    time = np.ravel(data["t"])
+    x = np.ravel(data["x"])
+    u = np.real(data["usol"])
+    dt = time[1] - time[0]
+    dx = x[1] - x[0]
+
+    u_deriv = [np.zeros(u.shape) for i in range(4)]
+    for i in range(u.shape[1]):
+        derivs_sub = compute_derivatives(u[:, i], dx, [0, 0, 0, 0], n=4)
+        for j in range(4):
+            u_deriv[j][:, i] = derivs_sub[j]
+    u_init = [u[flags.burn_in]]
+    for i in range(4 - 1):
+        u_init.append(u_deriv[i][flags.burn_in])
+
+    u = u.copy() + flags.noise * np.std(u.copy()) * np.random.randn(u.shape[0], u.shape[1])
+    u = u.reshape(len(x), len(time), 1)
+
+    # Define from Laplace library
+    X, T = np.meshgrid(x, time)
+    X = X - np.min(X)
+    XT = np.asarray([X, T]).T
+    laplace_lib = LaplaceLibrary(
+        library_functions=[lambda x: x],
+        function_names=[lambda x: x],
+        derivative_order=2,
+        basis_rate=flags.basis_rate,
+        basis_bias=flags.basis_bias,
+        spatiotemporal_grid=XT,
+        is_uniform=True,
+        K=flags.num_basis,
+        burn_in=flags.burn_in,
+        include_interaction=True,
+        periodic=True,
+        initial=u_init
+    )
+
+    # Run optimizers
+    optimizer = ps.STLSQ(threshold=0.5, alpha=0.02, normalize_columns=True)
+    model1 = ps.SINDy(feature_library=laplace_lib, optimizer=optimizer)
+    model1.fit(u)
+
+    feature_names = laplace_lib.get_feature_names()
+    print("Features: ", feature_names)
+    print("")
+
+    model1.print()
+
+    optimizer = ps.SR3(
+        threshold=0.1, thresholder="l0", tol=1e-8, normalize_columns=True, max_iter=1000)
+    model2 = ps.SINDy(feature_library=laplace_lib, optimizer=optimizer)
+    model2.fit(u)
+    model2.print()
+
+    optimizer = ps.SR3(
+        threshold=0.001, max_iter=1000, thresholder="l1", normalize_columns=True)
+    model3 = ps.SINDy(feature_library=laplace_lib, optimizer=optimizer)
+    model3.fit(u)
+    model3.print()
+
+    optimizer = ps.SSR(normalize_columns=True, kappa=2e-8, max_iter=100)
+    model4 = ps.SINDy(feature_library=laplace_lib, optimizer=optimizer)
+    model4.fit(u)
+    model4.print()
+
+    optimizer = ps.SSR(
+        criteria="model_residual", normalize_columns=True, kappa=1e-6, max_iter=100)
+    model5 = ps.SINDy(feature_library=laplace_lib, optimizer=optimizer)
+    model5.fit(u)
+    model5.print()
+
+    optimizer = ps.FROLS(normalize_columns=True, kappa=1e-5)
+    model6 = ps.SINDy(feature_library=laplace_lib, optimizer=optimizer)
+    model6.fit(u)
+    model6.print()
+
+    return laplace_lib, [model1, model2, model3, model4, model5, model6]
 
 
 if __name__ == "__main__":
@@ -36,4 +119,4 @@ if __name__ == "__main__":
     args.time = now.strftime("%Y_%m_%d_%H_%M_%S")
 
 
-    main(args)
+    lib, model = main(args)
