@@ -101,7 +101,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--num_basis', type=int, default=10)
-    parser.add_argument('--noise', type=float, default=0.05)
+    parser.add_argument('--noise', type=float, default=0.00)
     parser.add_argument('--burn_in', type=int, default=100, help="")
     parser.add_argument('--if', default=False, type=lambda x: bool(distutils.util.strtobool(x)), help='')
  
