@@ -108,7 +108,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(args)
 
-    now = datetime.now()
-    args.time = now.strftime("%Y_%m_%d_%H_%M_%S")
-
     lib, model = main(args)
